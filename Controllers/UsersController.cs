@@ -4,25 +4,26 @@ using System.Diagnostics;
 
 namespace staff_register.Controllers
 {
-    public class HomeController : Controller
+    public class UsersController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public UsersController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Autorization()
         {
             return View();
         }
-
-        public IActionResult Search()
+        public IActionResult Registration()
         {
             return View();
         }
-
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

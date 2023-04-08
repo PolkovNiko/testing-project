@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Поиск";
+}
+
+<h2>@ViewData["Title"]</h2>
+<form>
+<div class="col-md-5">
+    <label for="inputFIO" class="form-label">ФИО</label>
+    <input type="email" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович">
+</div>
+<div class="col-md-3">
+    <label for="inputNumber" class="form-label">Номер телефона</label>
+    <input type="text" class="form-control" id="inputNumber" placeholder="375291233211">
+</div>
+<div class="col-md-6">
+    <label for="inputAddress" class="form-label">Адрес проживания</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92">
+</div>
+<div class="col-12">
+    <button type="submit" class="btn btn-primary">Поиск</button>
+</div>
+</form>
+
+@*foreach(){
+    вставляется таблица с строками
+}*@

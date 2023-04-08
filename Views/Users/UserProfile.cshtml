@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Профиль";
+}
+<h2>@ViewData["Title"]</h2>
+
+
+<!-- g-* это размер отступов между элементами -->
+ <form class="row g-3" style="width:1000px">
+     
+  <div class="col-md-2">
+    <label for="inputEmail4" class="form-label">ID</label>
+    <input type="email" class="form-control" id="inputID">
+  </div>
+  <div class="col-md-5">
+    <label for="inputFIO" class="form-label">ФИО</label>
+    <input type="email" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович">
+  </div>
+  <div class="col-md-3">
+    <label for="inputDataHB" class="form-label">День рождения</label>
+    <input type="date" class="form-control" id="inputDataHB" >
+  </div>
+  <div class="col-md-3">
+    <label for="inputDepartment" class="form-label">Отдел</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Back-end">
+  </div>
+  <div class="col-md-3">
+    <label for="inputNumber" class="form-label">Номер телефона</label>
+    <input type="text" class="form-control" id="inputNumber" placeholder="375291233211">
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Адрес проживания</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92">
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">Семейное положение</label>
+    <select id="inputState" class="form-select">
+      <option selected>Один(-на)</option>
+      <option>Влюблён(-а)</option>
+      <option>Женат\Замужем</option>
+      <option>В разводе</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+      <label for="inputWag" class="form-label">Заработная плата</label>
+      <span class="input-group-text"><input type="text" class="form-control"> BYN</span>
+      
+  </div>
+  <div class="row">
+      <div class="col-md-5">
+          <label for="formFile" class="form-label">Загрузить фото</label>
+          <input class="form-control" type="file" id="formFile">
+      </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Сохранить данные</button>
+  </div>
+</form>

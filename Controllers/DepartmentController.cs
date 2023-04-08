@@ -4,25 +4,27 @@ using System.Diagnostics;
 
 namespace staff_register.Controllers
 {
-    public class HomeController : Controller
+    public class DepartmentController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public DepartmentController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Departments()
         {
             return View();
         }
 
-        public IActionResult Search()
+        public IActionResult Staff()
         {
             return View();
         }
-
+        public IActionResult StaffOfDep()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

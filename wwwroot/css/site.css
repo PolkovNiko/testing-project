@@ -1,22 +1,24 @@
-html {
-  font-size: 14px;
+html{
+    font-size:18px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+img{
+    max-width:100%;
+    height:auto;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+section{
+    padding:50px;
+}
+#text_color{
+    color:white;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+#text_color:hover {
+    color: #9efff7;
 }
 
-body {
-  margin-bottom: 60px;
+.navbar-nav .dropdown-menu{
+    right:0;
+    left:auto;
 }
