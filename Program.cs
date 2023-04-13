@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using staff_register.Models;
+
 namespace staff_register
 {
     public class Program
@@ -6,6 +9,8 @@ namespace staff_register
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            string connection = builder.Configuration.GetConnectionString("regedit");
+            builder.Services.AddDbContext<RegeditContext>(option=>option.UseSqlServer(connection));
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
