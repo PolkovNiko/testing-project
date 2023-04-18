@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using staff_register.Models;
 using System.Diagnostics;
 
@@ -6,21 +7,37 @@ namespace staff_register.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public DepartmentController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
+        RegeditContext _db;
+        public DepartmentController(RegeditContext db) 
+        { 
+            _db = db;
         }
+
         public IActionResult Departments()
+        {
+            return View(_db.Departmens.ToList());
+        }
+        [Authorize(Roles = "Пользователь")]
+        public IActionResult CreateDep()
         {
             return View();
         }
+        [Authorize(Roles = "Пользователь")]
+        public IActionResult DeleteDep()
+        {
 
+            return View();
+        }
+        //public IActionResult CreateDep()
+        //{
+        //    return View();
+        //}
+        [Authorize(Roles = "Пользователь")]
         public IActionResult Staff()
         {
             return View();
         }
+        [Authorize(Roles = "Пользователь")]
         public IActionResult StaffOfDep()
         {
             return View();

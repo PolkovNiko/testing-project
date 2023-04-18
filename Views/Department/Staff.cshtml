@@ -5,6 +5,33 @@
 
 <!--тут цикл для всех пользователей -->
 <div class="container">
+    <form asp-controller="Users" asp-action="Search" method="post">
+        <div class="w-50">
+            <label for="Search" class="form-label">Запрос:</label>
+            <input type="text" class="form-control" id="Search">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="FIO" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                ФИО
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Number" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Номер телефона
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Adress" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Адрес
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+<div class="container">
     <div class="col">
         <div class="card" style="width: 18rem;">
           <img src="..." class="card-img-top" alt="...">

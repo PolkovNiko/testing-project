@@ -13,6 +13,7 @@ public partial class RegeditContext : DbContext
     public RegeditContext(DbContextOptions<RegeditContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Departmen> Departmens { get; set; }

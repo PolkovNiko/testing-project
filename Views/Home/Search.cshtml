@@ -1,26 +1,72 @@
 ﻿@{
     ViewData["Title"] = "Поиск";
 }
+@model IEnumerable<staff_register.Models.Staff >
 
 <h2>@ViewData["Title"]</h2>
-<form>
-<div class="col-md-5">
-    <label for="inputFIO" class="form-label">ФИО</label>
-    <input type="email" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович">
-</div>
-<div class="col-md-3">
-    <label for="inputNumber" class="form-label">Номер телефона</label>
-    <input type="text" class="form-control" id="inputNumber" placeholder="375291233211">
-</div>
-<div class="col-md-6">
-    <label for="inputAddress" class="form-label">Адрес проживания</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92">
-</div>
-<div class="col-12">
-    <button type="submit" class="btn btn-primary">Поиск</button>
-</div>
-</form>
 
+<div class="container">
+    <form asp-controller="Users" asp-action="Search" method="post">
+        <div class="w-50">
+            <label for="Search" class="form-label">Запрос:</label>
+            <input type="text" class="form-control" id="Search">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="FIO" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                ФИО
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Number" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Номер телефона
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Adress" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                Адрес
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+<div class="g-7">
+    <button type="button" class="btn btn-primary" asp-controller="Users" asp-action="CreateStaff">Добавить сотрудника</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">День рождения</th>
+            <th scope="col">Отдел</th>
+            <th scope="col">Номер<br /> телефона</th>
+            <th scope="col">Адресс</th>
+            <th scope="col">Семейное<br /> положение</th>
+            <th scope="col">Зарплата</th>
+            <th scope="col">Фото</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Fio</td>
+                <td>@item.Birthday</td>
+                <td>@item.Departmen</td>
+                <td>@item.Number</td>
+                <td>@item.Adress</td>
+                <td>@item.FamilyStatus</td>
+                <td>@item.Wage</td>
+                <td>@item.Photo</td>
+                <td><button type="submit" class="btn btn-primary" asp-controller="Users" asp-action="UpdateStaff">Изменить</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
 @*foreach(){
     вставляется таблица с строками
 }*@

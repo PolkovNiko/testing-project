@@ -1,9 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Отделы";
 }
-
+@model IEnumerable<staff_register.Models.Departmen>
 <h2>@ViewData["Title"]</h2>
 
-<a class="fs-4" asp-controller="Department" asp-action="StaffOfDep">Back-end<br /></a>
-<a class="fs-4" asp-controller="Department" asp-action="StaffOfDep">Front-end<br /></a>
-<a class="fs-4" asp-controller="Department" asp-action="StaffOfDep">QA Engineer<br /></a>
+<a class="fs-4" asp-controller="Department" asp-action="CreateDep">Создать отдел<br /></a>
+
+
+@foreach(var item in Model){
+    <a class="fs-4" asp-controller="Department" asp-action="StaffOfDep"> @item.Name <br /></a>
+    <form mehtod="post" asp-contoller="Departmetn" asp-action="DeleteDep" asp-route-id="@item.Id">
+        <button type="submit" asp-controller="Department" asp-action="DeleteDep" value="delete">Удалить</button>
+    </form>
+    <button type="submit" asp-controller="Department" asp-action="UpdateDep" value="update">Изменить</button>
+}

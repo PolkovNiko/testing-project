@@ -1,6 +1,43 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<staff_register.Models.User>
 
     <h1>Тестовое задание</h1>
     <h3>Тема: Реестр кадров</h3>
+
+@*<p>
+    <label>Аватар</label>
+    <input name="Avatar" type="file" class="form-control" />
+</p>
+<p>
+    <input type="submit" value="Добавить" />
+</p>
+*@
+<p>
+    Список пользователей
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Ранг</th>
+            <th scope="col">Почта</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Login</td>
+                <td>@item.Password</td>
+                <td>@item.Rank</td>
+                <td>@item.Email</td>
+                <td><a class="btn btn-primary" asp-controller="Users" asp-action="Registration">Добавить</a></td> @*тут изменить на "изменить"*@
+            </tr>
+        }
+    </tbody>
+</table>

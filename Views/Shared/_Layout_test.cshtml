@@ -42,7 +42,15 @@
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               @*this be a validate on autorizable users*@
                             <li><a class="dropdown-item" asp-controller="Users" asp-action="Autorization">Авторизация</a></li>
-                            <li><a class="dropdown-item" asp-controller="Users" asp-action="UserProfile">@*тут через спец возможность фио юзера*@</a></li>
+                            <li><a class="dropdown-item" asp-controller="Users" asp-action="UserProfile">
+
+                                        @if (ViewData["fio"] != null)
+                                        {
+                                            @ViewData["fio"]
+                                        }
+                                        @*тут через спец возможность фио юзера*@</a>
+                                </li>
+                             <li><a class="dropdown-item" href="/logout">Выйти</a></li>
                           </ul>
                       </li>
                   </ul>
