@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Создать сотрудника";
+}
+
+@{
+    var values = new List<string> { "Один(-на)", "Влюблён(-а)", "Женат\\Замужем", "В разводе" };
+}
+@*@using staff_register.Models*@
+
+@model staff_register.Models.newStaff
+
+@*@model IEnumerable<staff_register.Models.Staff>*@
+
+    
+
+<h2>@ViewData["Title"]</h2>
+
+
+<!-- g-* это размер отступов между элементами...
+
+снизу - пример на создание профайла для пользователя админом.... просто пусть будет
+-->
+<form class="row g-3" style="width:1000px" asp-controller="Users" asp-action="CreateStaff"  enctype="multipart/form-data" method="post">
+
+        <div class="col-md-2">
+            <label for="inputEmail4" class="form-label">ID</label>
+        <input readonly type="number" class="form-control" id="inputID" name="Id" value="@ViewData["Id"]">
+        </div>
+        <div class="col-md-5">
+            <label for="inputFIO" class="form-label">ФИО</label>
+            <input type="text" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович" name="Fio">
+        </div>
+        <div class="col-md-3">
+            <label for="inputDataHB" class="form-label">День рождения</label>
+        <input type="date" class="form-control" id="inputDataHB" name="Birthday">
+        </div>
+        <div class="col-md-3">
+            <label for="inputDepartment" class="form-label">Отдел</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Back-end" name="Department">
+        </div>
+        <div class="col-md-3">
+            <label for="inputNumber" class="form-label">Номер телефона</label>
+        <input type="text" class="form-control" id="inputNumber" placeholder="375291233211" name="Number">
+        </div>
+        <div class="col-md-6">
+            <label for="inputAddress" class="form-label">Адрес проживания</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92" name="Adress">
+        </div>
+        <div class="col-md-3">
+            <label for="inputState" class="form-label">Семейное положение</label>
+            <input type="text" id="inputState" class="form-select" name="FamilyStatus">
+        </div>
+        <div class="col-md-3">
+            <label for="inputWag" class="form-label">Заработная плата</label>
+        <span class="input-group-text"><input type="text" class="form-control" name="Wage"> BYN</span>
+
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label for="formFile" class="form-label">Загрузить фото</label>
+            <input class="form-control" type="file" id="formFile" name="Photo">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Сохранить данные</button>
+        </div>
+    </form>

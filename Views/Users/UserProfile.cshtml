@@ -1,7 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Создать сотрудника";
 }
+
+@{
+    var values = new List<string> { "Один(-на)", "Влюблён(-а)", "Женат\\Замужем", "В разводе" };
+    string x, y;
+    string date = "";
+    if (Model.Birthday.Month < 10)
+    {
+        x = "0" + Model.Birthday.Month;
+        if (Model.Birthday.Day < 10)
+        {
+            y = "0" + Model.Birthday.Day;
+            date = Model.Birthday.Year + "-" + x + "-" + y;
+        }
+        else
+        { date = Model.Birthday.Year + "-" + x + "-" + Model.Birthday.Day; }
+
+    }
+    else if(Model.Birthday.Day < 10)
+    {
+        y = "0" + Model.Birthday.Day;
+        date = Model.Birthday.Year + "-" + Model.Birthday.Month + "-" + y;
+    }
+}
+@*@using staff_register.Models*@
+
 @model staff_register.Models.Staff
+@*@model IEnumerable<staff_register.Models.Staff>*@
+
+    
+
 <h2>@ViewData["Title"]</h2>
 
 
@@ -9,110 +38,49 @@
 
 снизу - пример на создание профайла для пользователя админом.... просто пусть будет
 -->
-@*@if(ViewData["type"] == "create")
-{
-    <form class="row g-3" style="width:1000px" asp-controller="Users" asp-action="CreateStaff" method="post">
+<form class="row g-3" style="width:1000px" asp-controller="Users" asp-action="UpdateStaff" enctype="multipart/form-data" method="post">
 
-        <div class="col-md-2">
-            <label for="inputEmail4" class="form-label">ID</label>
-            <input type="email" class="form-control" id="inputID" value="@Model.Id">
-        </div>
-        <div class="col-md-5">
-            <label for="inputFIO" class="form-label">ФИО</label>
-            <input type="email" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович" asp-for="Fio">
-        </div>
-        <div class="col-md-3">
-            <label for="inputDataHB" class="form-label">День рождения</label>
-            <input type="date" class="form-control" id="inputDataHB" asp-for="Birthday">
-        </div>
-        <div class="col-md-3">
-            <label for="inputDepartment" class="form-label">Отдел</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Back-end" asp-for="Department">
-        </div>
-        <div class="col-md-3">
-            <label for="inputNumber" class="form-label">Номер телефона</label>
-            <input type="text" class="form-control" id="inputNumber" placeholder="375291233211" asp-for="Number">
-        </div>
-        <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Адрес проживания</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92" asp-for="Adress">
-        </div>
-        <div class="col-md-3">
-            <label for="inputState" class="form-label">Семейное положение</label>
-            <select id="inputState" class="form-select" asp-for="FamilyStatus">
-                <option selected>Один(-на)</option>
-                <option>Влюблён(-а)</option>
-                <option>Женат\Замужем</option>
-                <option>В разводе</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="inputWag" class="form-label">Заработная плата</label>
-            <span class="input-group-text"><input type="text" class="form-control" asp-for="Wage"> BYN</span>
-
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <label for="formFile" class="form-label">Загрузить фото</label>
-                <input class="form-control" type="file" id="formFile">
+            <div class="col-md-2">
+                <label for="inputEmail4" class="form-label">ID</label>
+        <input readonly type="number" class="form-control" id="inputID" value="@Model.Id" name="Id">
             </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Сохранить данные</button>
-        </div>
-    </form>
-}
-else
-{*@
-    <form class="row g-3" style="width:1000px" asp-controller="Users" asp-action="UpdateStaff" method="post">
-
-        <div class="col-md-2">
-            <label for="inputEmail4" class="form-label">ID</label>
-            <input type="email" class="form-control" id="inputID" value="@Model.Id">
-        </div>
-        <div class="col-md-5">
-            <label for="inputFIO" class="form-label">ФИО</label>
-            <input type="email" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович" asp-for="Fio" value="@Model.Fio">
-        </div>
-        <div class="col-md-3">
-            <label for="inputDataHB" class="form-label">День рождения</label>
-            <input type="date" class="form-control" id="inputDataHB" asp-for="Birthday" value="@Model.Birthday">
-        </div>
-        <div class="col-md-3">
-            <label for="inputDepartment" class="form-label">Отдел</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Back-end" asp-for="Department" value="@Model.Department">
-        </div>
-        <div class="col-md-3">
-            <label for="inputNumber" class="form-label">Номер телефона</label>
-            <input type="text" class="form-control" id="inputNumber" placeholder="375291233211" asp-for="Number" value="@Model.Number">
-        </div>
-        <div class="col-md-6">
-            <label for="inputAddress" class="form-label">Адрес проживания</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92" asp-for="Adress" value="@Model.Adress">
-        </div>
-        <div class="col-md-3">
-            <label for="inputState" class="form-label">Семейное положение</label>
-            <select id="inputState" class="form-select" asp-for="FamilyStatus" > @*придумать здесь как сделать в option selected используя данные из бд*@
-                <option >Один(-на)</option>
-                <option>Влюблён(-а)</option>
-                <option>Женат\Замужем</option>
-                <option>В разводе</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="inputWag" class="form-label">Заработная плата</label>
-            <span class="input-group-text"><input type="text" class="form-control" asp-for="Wage" value="@Model.Wage"> BYN</span>
-
-        </div>
-        <div class="row">
             <div class="col-md-5">
-                <label for="formFile" class="form-label">Загрузить фото</label>
-                <input class="form-control" type="file" id="formFile" value="@Model.Photo">
+                <label for="inputFIO" class="form-label">ФИО</label>
+        <input type="text" class="form-control" id="inputFIO" placeholder="Иванов Иван Иванович" value="@Model.Fio" name="Fio">
             </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Сохранить данные</button>
-        </div>
-    </form>
-@*}
-*@
+            <div class="col-md-3">
+                <label for="inputDataHB" class="form-label">День рождения</label>
+        <input type="date" class="form-control" id="inputDataHB" value="@date" name="Birthday">
+            </div>
+            <div class="col-md-3">
+                <label for="inputDepartment" class="form-label">Отдел</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Back-end" value="@Model.Department" name="Department">
+            </div>
+            <div class="col-md-3">
+                <label for="inputNumber" class="form-label">Номер телефона</label>
+        <input type="text" class="form-control" id="inputNumber" placeholder="375291233211" value="@Model.Number" name="Number">
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress" class="form-label">Адрес проживания</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92" value="@Model.Adress" name="Adress">
+            </div>
+            <div class="col-md-3">
+                <label for="inputState" class="form-label">Семейное положение</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Брестская обл., г.Пинск, ул. Дзержинского 92" value="@Model.FamilyStatus" name="FamilyStatus">
+            </div>
+            <div class="col-md-3">
+                <label for="inputWag" class="form-label">Заработная плата</label>
+        <span class="input-group-text"><input type="text" class="form-control" value="@Model.Wage" name="Wage"> BYN</span>
+
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="formFile" class="form-label">Загрузить фото</label>
+            <input class="form-control" type="file" id="formFile" value="@Model.Photo" name="Photo">
+                </div>
+        <img style='width:120px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Photo))" />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Сохранить данные</button>
+            </div>
+        </form>

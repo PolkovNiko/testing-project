@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Изменить";
+}
+@model IEnumerable<staff_register.Models.Departmen>
+
+<form asp-controller="Department" asp-action="UpdateDep" method="post">
+    <div class="mb-3">
+        @foreach(var item in Model)
+        {
+            if(item.Id.ToString() == ViewData["iddep"]?.ToString())
+            {
+                <label class="form-label">Название отдела</label>
+                <input type="text" class="form-control" value="@item.Name" name="Name">
+                <label class="form-label">Босс</label>
+                <input readonly type="text" id="disableInput" class="form-control" name="IdBoss" value="@ViewData["Id"]">
+                <label class="form-label">Об отделе</label>
+                <input type="text" class="form-control" name="About" value="@item.About">         
+            }
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Создать пользователя</button>
+</form>

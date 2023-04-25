@@ -1,30 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Поиск";
+    
 }
-@model IEnumerable<staff_register.Models.Staff >
+@model IEnumerable<staff_register.Models.Staff>
 
 <h2>@ViewData["Title"]</h2>
 
 <div class="container">
-    <form asp-controller="Users" asp-action="Search" method="post">
+    <form asp-controller="Home" asp-action="Search" method="post">
         <div class="w-50">
             <label for="Search" class="form-label">Запрос:</label>
-            <input type="text" class="form-control" id="Search">
+            <input type="text" class="form-control"  name="Query">
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="FIO" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" checked name="Fio">
             <label class="form-check-label" for="flexCheckDefault">
                 ФИО
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Number" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" name="Number">
             <label class="form-check-label" for="flexCheckDefault">
                 Номер телефона
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Adress" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" name="Adress">
             <label class="form-check-label" for="flexCheckDefault">
                 Адрес
             </label>
@@ -32,9 +33,7 @@
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
 </div>
-<div class="g-7">
-    <button type="button" class="btn btn-primary" asp-controller="Users" asp-action="CreateStaff">Добавить сотрудника</button>
-</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -43,10 +42,10 @@
             <th scope="col">День рождения</th>
             <th scope="col">Отдел</th>
             <th scope="col">Номер<br /> телефона</th>
-            <th scope="col">Адресс</th>
+            <th scope="col">Адрес</th>
             <th scope="col">Семейное<br /> положение</th>
             <th scope="col">Зарплата</th>
-            <th scope="col">Фото</th>
+            <th scope="col">Фотография</th>
         </tr>
     </thead>
     <tbody>
@@ -55,14 +54,34 @@
             <tr>
                 <th scope="row">@item.Id</th>
                 <td>@item.Fio</td>
-                <td>@item.Birthday</td>
-                <td>@item.Departmen</td>
+                @{
+                    string x, y;
+                    string date = "";
+                    if (item.Birthday.Month < 10)
+                    {
+                        x = "0" + item.Birthday.Month;
+                        if (item.Birthday.Day < 10)
+                        {
+                            y = "0" + item.Birthday.Day;
+                            date = item.Birthday.Year + "-" + x + "-" + y;
+                        }
+                        else
+                        { date = item.Birthday.Year + "-" + x + "-" + item.Birthday.Day; }
+
+                    }
+                    else if (item.Birthday.Day < 10)
+                    {
+                        y = "0" + item.Birthday.Day;
+                        date = item.Birthday.Year + "-" + item.Birthday.Month + "-" + y;
+                    }
+                }
+                <td>@date</td>
+                <td>@item.Department</td>
                 <td>@item.Number</td>
                 <td>@item.Adress</td>
                 <td>@item.FamilyStatus</td>
                 <td>@item.Wage</td>
-                <td>@item.Photo</td>
-                <td><button type="submit" class="btn btn-primary" asp-controller="Users" asp-action="UpdateStaff">Изменить</button></td>
+                <td><img style='width:120px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Photo))" /></td>
             </tr>
         }
     </tbody>

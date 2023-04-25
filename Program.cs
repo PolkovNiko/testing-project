@@ -27,13 +27,13 @@ namespace staff_register
                 });
             builder.Services.AddAuthorization(conf =>
             {
-                conf.AddPolicy("Админ", policy =>
+                conf.AddPolicy("Admin", policy =>
                 {
-                    policy.RequireClaim(ClaimTypes.Role, "Админ");
+                    policy.RequireClaim(ClaimTypes.Role, "Admin");
                 });
-                conf.AddPolicy("Пользователь", policy =>
+                conf.AddPolicy("User", policy =>
                 {
-                    policy.RequireClaim(ClaimTypes.Role, "Пользователь");
+                    policy.RequireClaim(ClaimTypes.Role, "User");
                 });
             });
             builder.Services.AddControllersWithViews();
@@ -60,31 +60,15 @@ namespace staff_register
             app.MapGet("/logout", async (HttpContext context) =>
             {
                 await context.SignOutAsync("Cookies");
+                if (context.Request.Cookies.ContainsKey("Id"))
+                {
+                    context.Response.Cookies.Delete("Id");
+                }
                 return Results.Redirect("/");
             });
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            //app.Map("/test", (ClaimsPrincipal claimsPrincipal) =>
-            //{
-            //    var user = claimsPrincipal.Identity;
-            //    if (user is not null && user.IsAuthenticated)
-            //    {
-            //        return $"Пользователь аутентифицирован";
-            //    }
-            //    else
-            //    {
-            //        return "Пользователь НЕ аутентифицирован";
-            //    }
-            //});
-            //app.Map("/1", (HttpContext context) =>
-            //{
-            //    var name = context.User.FindFirst(ClaimTypes.Name);
-            //    var role = context.User.FindFirst(ClaimTypes.Role);
-
-            //    return $"Имя = {name?.Value} --- Role = {role?.Value}";
-            //});
             app.Run();
         }
     }

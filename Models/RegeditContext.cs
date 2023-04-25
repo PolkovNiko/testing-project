@@ -103,7 +103,6 @@ public partial class RegeditContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("rank");
         });
-
         OnModelCreatingPartial(modelBuilder);
     }
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Создать";
+    ViewData["Title"] = "Изменить";
 }
 @model staff_register.Models.Departmen
 <h2>@ViewData["Title"]</h2>
@@ -9,9 +9,9 @@
         <label class="form-label">Название отдела</label>
         <input type="text" class="form-control" asp-for="@Model.Name">
         <label class="form-label">Босс</label>
-        <input type="text" id="disableInput" class="form-control" asp-for="@Model.IdBoss"  value="@ViewData["currentId"]">
+        <input readonly type="text" id="disableInput" class="form-control" asp-for="@Model.IdBoss" value="@ViewData["Id"]">
         <label class="form-label">Об отделе</label>
-        <input type="email" class="form-control" asp-for="@Model.About">
+        <input type="text" class="form-control" asp-for="@Model.About">
     </div>
     <button type="submit" class="btn btn-primary">Создать пользователя</button>
 </form>

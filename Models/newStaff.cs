@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace staff_register.Models;
-
+[NotMapped]
 public partial class newStaff
 {
     public int Id { get; set; }
@@ -25,6 +26,4 @@ public partial class newStaff
 
     public virtual ICollection<Departmen> Departmen { get; set; } = new List<Departmen>();
     public virtual Departmen DepartmentNavigation { get; set; } = null!;
-
-    public virtual User IdNavigation { get; set; } = null!;
 }

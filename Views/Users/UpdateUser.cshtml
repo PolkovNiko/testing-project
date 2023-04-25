@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+}
+@model IEnumerable<staff_register.Models.User>
+
+<h2>@ViewData["Title"]</h2>
+<form asp-controller="Users" asp-action="UpdateUser" method="post" accept-charset="utf-8">
+    @foreach(var item in Model){
+        if(item.Id.ToString() == ViewData["idUser"]?.ToString()){
+      <div class="mb-3">
+        <input readonly hidden type="number" class="form-control" value="@ViewData["idUser"]" name="Id">
+        <label for="InputLogin" class="form-label">Логин</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@item.Login" name="Login">
+        <div id="emailHelp" class="form-text">Никому не сообщайте свой логин</div>
+        <label for="exampleInputPassword1" class="form-label">Пароль</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" value="@item.Password" name="Password">
+        <div id="passwordHelpBlock" class="form-text">
+            Ваш пароль должен состоять из 8-20 символов, содержать буквы и цифры и не должен содержать пробелов,эмодзи.
+        </div>
+        <label for="InputEmail" class="form-label">Почта</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@item.Email" name="Email">
+        <div id="emailHelp" class="form-text">Мы данные о вашей почте никому не передаём</div>
+        <label for="exampleInputEmail1" class="form-label">Тип пользователя</label>
+        <select class="form-select" aria-label="rank" name="Rank" >
+            @if(item.Rank == "User")
+            {
+                <option selected value="User">Пользователь</option>
+                <option  value="Admin">Админ</option>
+            }
+            else
+            {
+                <option selected value="Admin">Админ</option>
+                <option  value="User">Пользователь</option>
+            }
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Создать пользователя</button>}
+      }
+</form>

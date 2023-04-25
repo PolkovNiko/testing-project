@@ -4,13 +4,37 @@
 @model IEnumerable<staff_register.Models.Departmen>
 <h2>@ViewData["Title"]</h2>
 
-<a class="fs-4" asp-controller="Department" asp-action="CreateDep">Создать отдел<br /></a>
+<a class="btn btn-success" asp-controller="Department" asp-action="CreateDep">Создать отдел<br /></a>
 
-
-@foreach(var item in Model){
-    <a class="fs-4" asp-controller="Department" asp-action="StaffOfDep"> @item.Name <br /></a>
-    <form mehtod="post" asp-contoller="Departmetn" asp-action="DeleteDep" asp-route-id="@item.Id">
-        <button type="submit" asp-controller="Department" asp-action="DeleteDep" value="delete">Удалить</button>
-    </form>
-    <button type="submit" asp-controller="Department" asp-action="UpdateDep" value="update">Изменить</button>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Название отдела</th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th scope="col">Действие</th>
+                <th scope="col">Действие</th>
+            } @*тут проверочка на иденцифицированного пользователя*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <th scope="row">
+                    <a class="btn btn-primary" asp-controller="Department" asp-action="StaffOfDep" asp-route-id="@item.Id"> @item.Name <br /></a
+                    ></th>
+                @if(item.IdBoss.ToString() == ViewData["Id"]?.ToString())
+                {
+                <td>
+                    <form mehtod="post" asp-contoller="Departmetn" asp-action="DeleteDep" asp-route-id="@item.Id">
+                        <button class="btn btn-danger" type="submit" value="delete">Удалить</button>
+                    </form>
+                </td>
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Department" asp-action="UpdateDep" asp-route-id="@item.Id">Изменить</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
