@@ -118,10 +118,21 @@ namespace staff_register.Controllers
                 return BadRequest("Поля не заполнены!");
             }
             Staff? temp = db.Staff.FirstOrDefault(u=>u.Id == newStaff.Id);
+            string log = "";
             //Staff staff = new Staff { Fio = newStaff.Fio, Birthday = newStaff.Birthday, Adress = newStaff.Adress,
             //FamilyStatus = newStaff.FamilyStatus, Wage = newStaff.Wage, Department = newStaff.Department, Number = newStaff.Number};
             if (temp != null)
             {
+                log += "//------------------------------------------------------------------------------------//";
+                log += temp.Fio != newStaff.Fio ? newStaff.Fio + "\n" : "";
+                log += temp.Birthday != newStaff.Birthday ? newStaff.Birthday + "\n" : "";
+                log += temp.Number != newStaff.Number ? newStaff.Number + "\n" : "";
+                log += temp.Adress != newStaff.Adress ? newStaff.Adress + "\n" : "";
+                log += temp.FamilyStatus != newStaff.FamilyStatus ? newStaff.FamilyStatus + "\n" : "";
+                log += temp.Wage != newStaff.Wage ? newStaff.Wage + "\n" : "";
+                log += temp.Department != newStaff.Department ? newStaff.Department + "\n" : "";
+
+
                 temp.Fio = newStaff.Fio;
                 temp.Birthday = newStaff.Birthday;
                 temp.Number = newStaff.Number;
@@ -138,11 +149,14 @@ namespace staff_register.Controllers
                 {
                     image = binaryReader.ReadBytes((int)newStaff.Photo.Length);
                 }
+                log += temp.Photo.ToString() != newStaff.Photo.ToString() ? "Изменено фото \n" : "";
+                log += "//------------------------------------------------------------------------------------//";
                 temp.Photo = image;
             }
             db.Staff.Update(temp);
             await db.SaveChangesAsync();
-            return RedirectToAction("", "");
+            _logger.LogInformation(log + $"{DateTime.Now} \n");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

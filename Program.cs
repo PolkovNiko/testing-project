@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using staff_register.Models;
 using Microsoft.AspNetCore.Mvc;
+using staff_register.Controllers.Logger;
+using Microsoft.Extensions.Logging;
 
 namespace staff_register
 {
@@ -16,7 +18,8 @@ namespace staff_register
 
             string connection = builder.Configuration.GetConnectionString("regedit");
             builder.Services.AddDbContext<RegeditContext>(option => option.UseSqlServer(connection));
-
+            builder.Logging.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logger.txt"));
+            //builder.Logging.SetMinimumLevel(LogLevel.Information);
 
             // Add services to the container.
             builder.Services.AddAuthentication("Cookies")

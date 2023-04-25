@@ -1,0 +1,161 @@
+Now listening on: https://localhost:7244
+Now listening on: http://localhost:5141
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Programing\staff register
+Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (65ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[Id], [u].[email], [u].[login], [u].[password], [u].[rank]
+FROM [Users] AS [u]
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (28ms) [Parameters=[@__users_Login_0='?' (Size = 20), @__users_Password_1='?' (Size = 18)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[email], [u].[login], [u].[password], [u].[rank]
+FROM [Users] AS [u]
+WHERE [u].[login] = @__users_Login_0 AND [u].[password] = @__users_Password_1
+Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[Id], [u].[email], [u].[login], [u].[password], [u].[rank]
+FROM [Users] AS [u]
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[adress], [s].[birthday], [s].[department], [s].[family_status], [s].[fio], [s].[number], [s].[photo], [s].[wage]
+FROM [Staff] AS [s]
+WHERE CONVERT(varchar(11), [s].[Id]) = @__get_Item_0
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (2ms) [Parameters=[@__newStaff_Id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[adress], [s].[birthday], [s].[department], [s].[family_status], [s].[fio], [s].[number], [s].[photo], [s].[wage]
+FROM [Staff] AS [s]
+WHERE [s].[Id] = @__newStaff_Id_0
+Executed DbCommand (14ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (Size = 8000) (DbType = AnsiString), @p1='?' (DbType = Date), @p2='?' (DbType = Int32), @p3='?' (Size = 8000) (DbType = AnsiString), @p4='?' (Size = 8000) (DbType = AnsiString), @p5='?' (Size = 13), @p6='?' (Size = -1) (DbType = Binary), @p7='?' (DbType = Currency)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Staff] SET [adress] = @p0, [birthday] = @p1, [department] = @p2, [family_status] = @p3, [fio] = @p4, [number] = @p5, [photo] = @p6, [wage] = @p7
+OUTPUT 1
+WHERE [Id] = @p8;
+Афоний Павел Иванович
+вт, 25.04.2023 18:55:21 
+
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [u].[Id], [u].[email], [u].[login], [u].[password], [u].[rank]
+FROM [Users] AS [u]
